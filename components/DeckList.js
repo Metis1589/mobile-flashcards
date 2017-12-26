@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
 import DeckView from './DeckView'
-import { StackNavigator } from 'react-navigation'
+import { NavigationActions } from 'react-navigation'
 import { fetchDecks } from '../store/decks/actions'
 import { getDecks } from '../utils/api'
 import { connect } from 'react-redux'
+import { AppLoading} from 'expo'
 
 class DeckList extends Component {
     state = {
         ready: false,
+    }
+    onPress(){
+        const { navigation } = this.props
+        console.log('navigation', navigation, this.props);
     }
     componentDidMount() {
         const { dispatch } = this.props
@@ -27,17 +32,19 @@ class DeckList extends Component {
         });
     }
     render() {
-        let decks = this.props.decks.list
-        if(typeof(decks) == 'undefined'){
-            decks = {}
+        const decks = this.props.decks.list
+        const ready = this.state.ready
+        const component = this
+        if (ready === false) {
+            return <AppLoading />
         }
         return (
             <View>
-                {this.mapObject(decks, function (key, value) {
+                {this.mapObject(decks, function (key, deck) {
                     return <View key={key}>
-                        <TouchableOpacity onPress={() => navigation.navigate('DeckView')}>
-                            <Text>{value.title}</Text>
-                            <Text>{value.questions.length} cards</Text>
+                        <TouchableOpacity onPress={component.onPress.bind(component)}>
+                            <Text>{deck.title}</Text>
+                            <Text>{deck.questions.length} cards</Text>
                         </TouchableOpacity>
                     </View>;
                 })}
@@ -55,3 +62,7 @@ function mapStateToProps(state, ownProps) {
 export default connect(
     mapStateToProps
 )(DeckList)
+
+/*
+ navigation.dispatch(NavigationActions.push('DeckView', { 'title' : title }))
+ */

@@ -53,6 +53,7 @@ const Tabs = TabNavigator({
     }
   }
 })
+
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
