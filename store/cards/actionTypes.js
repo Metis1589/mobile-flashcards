@@ -1,0 +1,5 @@
+export const FETCH_CARDS = 'posts.FETCH_CARDS'
+export const FETCH_CARD = 'posts.FETCH_CARD'
+export const CREATE_CARD = 'posts.CREATE_CARD'
+export const UPDATE_CARD = 'posts.UPDATE_CARD'
+export const DELETE_CARD = 'posts.DELETE_CARD'

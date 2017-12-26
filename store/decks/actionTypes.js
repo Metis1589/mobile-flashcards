@@ -1,0 +1,5 @@
+export const FETCH_DECKS = 'posts.FETCH_DECKS'
+export const FETCH_DECK = 'posts.FETCH_DECK'
+export const CREATE_DECK = 'posts.CREATE_DECK'
+export const UPDATE_DECK = 'posts.UPDATE_DECK'
+export const DELETE_DECK = 'posts.DELETE_DECK'
