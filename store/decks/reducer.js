@@ -10,25 +10,15 @@ export default (state = initialState, action) => {
                 ...state,
                 ['list'] : action.decks,
             }
-        case actionTypes.FETCH_DECK:
-            console.log('state', state);
-            return {
-                ...state,
-                [action.deck.id]: action.deck,
-            }
         case actionTypes.CREATE_DECK:
-            console.log('state', state, action);
             return {
                 ...state,
                 [action.deck.title] : action.deck
             }
-        case actionTypes.UPDATE_DECK:
+        case actionTypes.ADD_CARD_TO_DECK:
             return {
                 ...state,
-                ['list'] : state.list.map(deck =>
-                    (deck.id === action.deck.id)
-                        ? action.deck
-                        : deck)
+                [action.deck.title]: action.deck,
             }
         case actionTypes.DELETE_DECK:
             return {

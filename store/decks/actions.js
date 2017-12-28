@@ -4,16 +4,12 @@ export function fetchDecks(decks) {
     return {type: actionTypes.FETCH_DECKS, decks}
 }
 
-export function fetchDeck(deck) {
-    return {type: actionTypes.FETCH_DECK, deck}
-}
-
 export function createDeck(deck) {
     return {type: actionTypes.CREATE_DECK, deck}
 }
 
-export function updateDeck(deck) {
-    return {type: actionTypes.UPDATE_DECK, deck}
+export function addCard(deck) {
+    return { type: actionTypes.ADD_CARD_TO_DECK, deck}
 }
 
 export function deleteDeck(deck_id) {

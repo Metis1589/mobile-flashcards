@@ -11,9 +11,8 @@ class DeckList extends Component {
     state = {
         ready: false,
     }
-    onPress(){
-        const { navigation } = this.props
-        console.log('navigation', navigation, this.props);
+    onPress(title){
+        this.props.navigation.navigate('DeckView', { 'title' : title })
     }
     componentDidMount() {
         const { dispatch } = this.props
@@ -42,7 +41,7 @@ class DeckList extends Component {
             <View>
                 {this.mapObject(decks, function (key, deck) {
                     return <View key={key}>
-                        <TouchableOpacity onPress={component.onPress.bind(component)}>
+                        <TouchableOpacity onPress={component.onPress.bind(component, key)}>
                             <Text>{deck.title}</Text>
                             <Text>{deck.questions.length} cards</Text>
                         </TouchableOpacity>
@@ -55,14 +54,11 @@ class DeckList extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        decks: state.decks
+        decks: state.decks,
+        navigation: ownProps.navigation
     }
 }
 
 export default connect(
     mapStateToProps
 )(DeckList)
-
-/*
- navigation.dispatch(NavigationActions.push('DeckView', { 'title' : title }))
- */

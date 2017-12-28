@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator, Button } from 'react-native'
 import { createDeck } from '../store/decks/actions'
 import { saveDeckTitle } from '../utils/api'
 import { connect } from 'react-redux'
 import { MKTextField, MKColor, mdl} from 'react-native-material-kit'
-import { Button } from 'react-native'
-import { NavigationActions } from 'react-navigation'
 
 class NewDeckContainer extends Component {
     state = {
@@ -20,7 +18,7 @@ class NewDeckContainer extends Component {
                     questions : []
                 }
                 dispatch(createDeck(deck))
-                navigation.dispatch(NavigationActions.back({key: 'NewDeck'}))
+                this.props.navigation.goBack()
             })
     }
     render() {
@@ -47,7 +45,8 @@ class NewDeckContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        decks: state.decks
+        decks: state.decks,
+        navigation: ownProps.navigation
     }
 }
 

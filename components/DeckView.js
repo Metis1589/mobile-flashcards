@@ -1,24 +1,15 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
-import DeckList from './DeckList'
+import DeckViewContainer from './DeckViewContainer'
 
 export default class DeckView extends Component {
     render() {
+        const {navigation} = this.props
+        const title = navigation.state.params.title
         return (
-            <View style={styles.container}>
-                <View>
-                    <Text>Deck View</Text>
-                </View>
+            <View>
+                <DeckViewContainer title={title} navigation={navigation} />
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-});

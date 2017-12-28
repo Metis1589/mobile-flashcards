@@ -9,7 +9,7 @@ export default class Deck extends Component {
                 <View>
                     <Text>Decks</Text>
                 </View>
-                <DeckList />
+                <DeckList navigation={this.props.navigation} />
             </View>
         )
     }
