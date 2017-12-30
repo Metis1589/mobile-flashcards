@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, Button } from 'react-native'
-import { MKTextField, MKColor, mdl} from 'react-native-material-kit'
+import { MKTextField, MKButton, MKColor, mdl} from 'react-native-material-kit'
 import { createDeck } from '../store/decks/actions'
 import { saveDeckTitle } from '../utils/api'
 import { connect } from 'react-redux'
@@ -70,9 +70,23 @@ class NewDeck extends Component {
                             onPress={this.onPress.bind(this)}
                             title="Submit"
                             color="#fff"
-                            accessibilityLabel="Learn more about this purple button"
                         />
                     </View>
+                    <MKButton
+                        backgroundColor={MKColor.Teal}
+                        shadowRadius={2}
+                        shadowOffset={{width:0, height:2}}
+                        shadowOpacity={.7}
+                        shadowColor="black"
+                        onPress={() => {
+    console.log('hi, raised button!');
+  }}
+                    >
+                        <Text pointerEvents="none"
+                              style={{color: 'white', fontWeight: 'bold',}}>
+                            RAISED BUTTON
+                        </Text>
+                    </MKButton>
                 </View>
 
             </View>

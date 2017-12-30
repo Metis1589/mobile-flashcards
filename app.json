@@ -11,10 +11,18 @@
       "icon": "http://www.student-scholarships.com/images/made/img/featured/nav_basketball_45_45.png"
     },
     "ios": {
-      "bundleIdentifier": "org.udacimobileflashcards.morozov.exp"
+      "bundleIdentifier": "org.udacimobileflashcards.morozov.exp",
+      "publishBundlePath": "ios/udacifimobileflashcards/Supporting/shell-app.bundle",
+      "publishManifestPath": "ios/udacifimobileflashcards/Supporting/shell-app-manifest.json"
     },
     "android": {
       "package": "org.udacimobileflashcards.morozov.exp"
+    },
+    "isDetached": true,
+    "detach": {
+      "scheme": "exp780a0c5050ea49809fc4735287fcec2b",
+      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.1.4-sdk23.0.0-f67c5bc3-4a27-40f6-8686-91e8f868a145.tar.gz",
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.1.2-sdk23.0.0-d47f172b-1ed3-4c8f-9e48-239052c678b6.tar.gz"
     }
   }
 }
