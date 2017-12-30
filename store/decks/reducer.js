@@ -11,9 +11,13 @@ export default (state = initialState, action) => {
                 ['list'] : action.decks,
             }
         case actionTypes.CREATE_DECK:
+            if(state['list'] === null){
+                state['list'] = {}
+            }
+            state['list'][action.deck.title] = action.deck
             return {
                 ...state,
-                [action.deck.title] : action.deck
+                ['list'] : state['list']
             }
         case actionTypes.ADD_CARD_TO_DECK:
             return {

@@ -2,89 +2,80 @@ import React from 'react';
 import { createStore } from 'redux'
 import reducers from './store/reducers'
 import { Provider } from 'react-redux'
-import { StyleSheet, Platform, Text, View, StatusBar } from 'react-native'
-import { TabNavigator, StackNavigator } from 'react-navigation'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import DeckView from './components/DeckView'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-import { purple, white } from './utils/colors'
+import { StackNavigator } from 'react-navigation'
+import { StyleSheet, View, Text, StatusBar } from 'react-native'
+import { white, black } from './utils/colors'
 import { Constants } from 'expo'
-import { setLocalNotification } from './utils/helpers'
 
-function UdaciStatusBar({backgroundColor, ...props}) {
+
+function AppStatusBar ({backgroundColor, ...props}) {
     return (
         <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
             <StatusBar translucent backgroundColor={backgroundColor} {...props} />
         </View>
     )
 }
-
-const Tabs = TabNavigator({
-    Deck: {
+const MainNavigator = StackNavigator({
+    Home: {
         screen: Deck,
-        navigationOptions: {
-            tabBarLabel: 'Deck',
-            tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
-        },
+        navigationOptions: ({navigation}) => ({
+            header: null
+        }),
     },
     NewDeck: {
         screen: NewDeck,
-        navigationOptions: {
-            tabBarLabel: 'NewDeck',
-            tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor}/>
-        },
+        navigationOptions: ({navigation}) => ({
+            header: null
+        }),
     },
-}, {
-    navigationOptions: {
-        header: null
-    },
-    tabBarOptions: {
-        activeTintColor: Platform.OS === 'ios' ? purple : white,
-        style: {
-            height: 56,
-            backgroundColor: Platform.OS === 'ios' ? white : purple,
-            shadowColor: 'rgba(0, 0, 0, 0.24)',
-            shadowOffset: {
-                width: 0,
-                height: 3
-            },
-            shadowRadius: 6,
-            shadowOpacity: 1
-        }
-    }
-})
-
-const MainNavigator = StackNavigator({
-    Home: {
-        screen: Tabs,
+    Deck: {
+        screen: Deck,
+        navigationOptions: ({navigation}) => ({
+            header: null
+        }),
     },
     AddCard: {
-        screen: AddCard
+        screen: AddCard,
+        navigationOptions: ({navigation}) => ({
+            title: `Add card`,
+        })
     },
     DeckView: {
-        screen: DeckView
+        screen: DeckView,
+        navigationOptions: ({navigation}) => ({
+            title: `${navigation.state.params.title}`,
+        })
     },
     Quiz: {
-        screen: Quiz
+        screen: Quiz,
+        navigationOptions: ({navigation}) => ({
+            title: `Quiz`,
+        })
     }
+},{
+    navigationOptions: () => ({
+        headerStyle: styles.header,
+        headerTintColor: white,
+        headerBackTitleStyle: styles.back,
+        headerTitleStyle: styles.headerTitle
+    })
 })
 
-const store = createStore(reducers);
+const store = createStore(reducers)
 
 export default class App extends React.Component {
-    componentDidMount() {
-        setLocalNotification()
-    }
 
     render() {
         return (
             <Provider store={store}>
-                <View style={styles.container}>
-                    <UdaciStatusBar barStyle="light-content"/>
-                    <MainNavigator></MainNavigator>
+                <View style={{flex: 1}}>
+                    <AppStatusBar backgroundColor={black} barStyle="light-content" />
+                    <MainNavigator />
                 </View>
             </Provider>
         )
@@ -92,8 +83,24 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ccc',
+    header: {
+        backgroundColor: black,
+        height: 50,
+        width: '80%',
+        padding: 0,
+        paddingBottom: 20,
+        alignItems: 'flex-start',
+        alignContent: 'flex-start',
+    },
+    back: {
+        color: black,
+        width: 0,
+        height: 0
+    },
+    headerTitle: {
+        color: white,
+        marginLeft: 50,
+        textAlign: 'left'
     }
-});
+})
+

@@ -1,7 +1,7 @@
 import { Notifications, Permissions } from 'expo'
 import { AsyncStorage } from 'react-native'
 
-const NOTIFICATION_KEY = 'UdaciFitness:notifications'
+const NOTIFICATION_KEY = 'UdacityFlashCards:notifications'
 
 export function getDailyReminderValue () {
     return {

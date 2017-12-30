@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native'
-import { formatCalendarResults, APP_STORAGE_KEY } from './_calendar'
+
+export const APP_STORAGE_KEY = 'UdacityFlashCards:application'
 
 export function getDecks() {
     return AsyncStorage.getItem(APP_STORAGE_KEY)
@@ -13,8 +14,8 @@ export function saveDeckTitle(title) {
 
 export function addCardToDeck(key, card) {
     return AsyncStorage.getItem(APP_STORAGE_KEY)
-        .then((results) => {
-            let data = JSON.parse(results)
+        .then((data) => JSON.parse(data))
+        .then((data) => {
             if(typeof(data[key]) !== 'undefined'){
                 data[key].questions.push(card)
                 AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(data))
