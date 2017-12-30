@@ -30,14 +30,12 @@ class Deck extends Component {
             return false
         }
         return Object.keys(object).sort((a, b) => a.title - b.title).map(function (key) {
-            console.log('key', key);
             return callback(key, object[key]);
         });
     }
 
     render() {
         const decks = this.props.decks.list
-        console.log('decks', decks);
         const navigation = this.props.navigation
         const ready = this.state.ready
         const component = this
