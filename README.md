@@ -18,7 +18,8 @@ More details can be found on (https://yarnpkg.com/en/)
 * node: v6.6.0
 * npm: 5.6.0
 * yarn: 1.3.2
-* IPhone 7: IOS 11 (Simulator)
+* iPhone 7: IOS 10.3 (Simulator)
+* iPad Air 2: IOS 10.3 (Simulator)
 
 ## Licence:
 MIT License
