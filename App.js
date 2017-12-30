@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: '80%',
         padding: 0,
-        paddingTop: 20,
         paddingBottom: 20,
         alignItems: 'flex-start',
         alignContent: 'flex-start',
