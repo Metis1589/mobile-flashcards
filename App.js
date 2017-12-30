@@ -8,18 +8,16 @@ import DeckView from './components/DeckView'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import { StackNavigator } from 'react-navigation'
-import { StyleSheet, View, Text, StatusBar } from 'react-native'
+import { View, StyleSheet, StatusBar } from 'react-native'
 import { white, black } from './utils/colors'
 import { Constants } from 'expo'
 
-
-function AppStatusBar ({backgroundColor, ...props}) {
-    return (
-        <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-            <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-        </View>
-    )
+function AppStatusBar({backgroundColor, ...props}){
+    return <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+        <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
 }
+
 const MainNavigator = StackNavigator({
     Home: {
         screen: Deck,
@@ -88,6 +86,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: '80%',
         padding: 0,
+        paddingTop: 20,
         paddingBottom: 20,
         alignItems: 'flex-start',
         alignContent: 'flex-start',
@@ -103,4 +102,3 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     }
 })
-
